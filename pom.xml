@@ -11,6 +11,8 @@
     <modules>
         <module>firsttasksolution</module>
         <module>main</module>
+        <module>secondtasksolution</module>
+        <module>thirdtasksolution</module>
     </modules>
 
     <properties>
