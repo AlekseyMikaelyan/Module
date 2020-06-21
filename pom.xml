@@ -13,6 +13,7 @@
         <module>main</module>
         <module>secondtasksolution</module>
         <module>thirdtasksolution</module>
+        <module>fourthtasksolution</module>
     </modules>
 
     <properties>
