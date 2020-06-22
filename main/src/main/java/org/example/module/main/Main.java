@@ -1,5 +1,6 @@
 package org.example.module.main;
 
+import org.example.module.fifthtasksolution.BinaryTree;
 import org.example.module.firsttasksolution.ArrayOfNumbers;
 import org.example.module.fourthtasksolution.StringValidator;
 import org.example.module.secondtasksolution.HorseMove;
@@ -24,5 +25,9 @@ public class Main {
         System.out.println("\n=================\n");
 
         StringValidator.stringChecking("({}[])");//Task number four
+
+        System.out.println("\n=================\n");
+
+        System.out.println(BinaryTree.maxDepth(new BinaryTree(5)));
     }
 }
