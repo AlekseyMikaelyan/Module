@@ -7,6 +7,17 @@ import java.util.Stack;
 
 public class StringValidator {
 
+    static char reverse(char c) {
+        switch (c) {
+            case')':
+                return '(';
+            case'}':
+                return '{';
+            default:
+                return '[';
+        }
+    }
+
     public static boolean stringChecking(String str) {
         boolean validString = false;
         Stack<Character> stack = new Stack<>();
@@ -23,7 +34,7 @@ public class StringValidator {
                     stack.push(str.charAt(i));
                 }
                 if((str.charAt(i) == ')') || (str.charAt(i) == '}') || (str.charAt(i) == ']')) {
-                    if(stack.empty()) {
+                    if(stack.empty() || (stack.peek() != reverse(str.charAt(i)))) {
                         flag = 1;
                     } else {
                         stack.pop();
