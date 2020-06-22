@@ -15,6 +15,7 @@
         <module>thirdtasksolution</module>
         <module>fourthtasksolution</module>
         <module>fifthtasksolution</module>
+        <module>sixthtasksolution</module>
     </modules>
 
     <properties>
