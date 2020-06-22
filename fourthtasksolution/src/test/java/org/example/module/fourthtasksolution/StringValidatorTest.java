@@ -5,8 +5,11 @@ import org.junit.Test;
 
 public class StringValidatorTest {
     @Test
-    public void methodShouldReturnValue() {
-        Assert.assertFalse(StringValidator.stringChecking("(("));
-        Assert.assertTrue(StringValidator.stringChecking("(){}[]"));
+    public void methodShouldReturnFalse() {
+        Assert.assertFalse(StringValidator.stringChecking("()[Привет!])({Привет!}))"));
+    }
+    @Test
+    public void methodShouldReturnTrue() {
+        Assert.assertTrue(StringValidator.stringChecking("([{}])"));
     }
 }

@@ -3,89 +3,42 @@ package org.example.module.fourthtasksolution;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Stack;
 
 public class StringValidator {
 
     public static boolean stringChecking(String str) {
         boolean validString = false;
-
-        if (str.isBlank() || str.isEmpty()) {
+        Stack<Character> stack = new Stack<>();
+        int flag = 0;
+        if(str.isBlank() || str.isEmpty()) {
             validString = true;
+            System.out.println("Строка допустима!");
         } else {
-
-            char[] charsArray = str.toCharArray();
-
-            if (charsArray[0] == ')' || charsArray[0] == '}' || charsArray[0] == ']') {
+            for(int i = 0; i < str.length(); i++) {
+                if(flag > 0) {
+                    break;
+                }
+                if((str.charAt(i) == '(') || (str.charAt(i) == '{') || (str.charAt(i) == '[')) {
+                    stack.push(str.charAt(i));
+                }
+                if((str.charAt(i) == ')') || (str.charAt(i) == '}') || (str.charAt(i) == ']')) {
+                    if(stack.empty()) {
+                        flag = 1;
+                    } else {
+                        stack.pop();
+                    }
+                }
+            }
+            if(!stack.empty()) {
+                flag = 1;
+            }
+            if(flag > 0) {
                 validString = false;
-
+                System.out.println("Строка НЕдопустима!");
             } else {
-
-                int count = 0;
-                for (char c : charsArray) {
-                    if (c == '(' || c == ')' || c == '{' || c == '}' || c == '[' || c == ']') {
-                        count++;
-                    }
-                }
-                if (count % 2 != 0) {
-                    validString = false;
-
-                } else {
-                    for (int i = 0; i < charsArray.length; i++) {
-                        for (int j = i + 1; j < charsArray.length; j++) {
-                            if (charsArray[i] == '(' && charsArray[j] == ')') {
-                                if (j == i + 1) {
-                                    validString = true;
-                                    continue;
-                                }
-                                for (int a = i + 1; a < j; a++) {
-                                    for (int b = a + 1; b < j; b++) {
-                                        if (charsArray[a] != '(' && charsArray[b] != '(' && charsArray[a] != ')' && charsArray[b] != ')' && charsArray[a] != '{' && charsArray[b] != '{' && charsArray[a] != '}' && charsArray[b] != '}' && charsArray[a] != '[' && charsArray[b] != '[' && charsArray[a] != ']' && charsArray[b] != ']') {
-                                            validString = true;
-                                        }
-                                        if ((charsArray[a] == '{' && charsArray[b] == '}') || (charsArray[a] == '[' && charsArray[b] == ']') || (charsArray[a] == '(' && charsArray[b] == ')')) {
-                                            validString = true;
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            if (charsArray[i] == '{' && charsArray[j] == '}') {
-                                if (j == i + 1) {
-                                    validString = true;
-                                    continue;
-                                }
-                                for (int a = i + 1; a < j; a++) {
-                                    for (int b = a + 1; b < j; b++) {
-                                        if (charsArray[a] != '(' && charsArray[b] != '(' && charsArray[a] != ')' && charsArray[b] != ')' && charsArray[a] != '{' && charsArray[b] != '{' && charsArray[a] != '}' && charsArray[b] != '}' && charsArray[a] != '[' && charsArray[b] != '[' && charsArray[a] != ']' && charsArray[b] != ']') {
-                                            validString = true;
-                                        }
-                                        if ((charsArray[a] == '{' && charsArray[b] == '}') || (charsArray[a] == '[' && charsArray[b] == ']') || (charsArray[a] == '(' && charsArray[b] == ')')) {
-                                            validString = true;
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            if (charsArray[i] == '[' && charsArray[j] == ']') {
-                                if (j == i + 1) {
-                                    validString = true;
-                                    continue;
-                                }
-                                for (int a = i + 1; a < j; a++) {
-                                    for (int b = a + 1; b < j; b++) {
-                                        if (charsArray[a] != '(' && charsArray[b] != '(' && charsArray[a] != ')' && charsArray[b] != ')' && charsArray[a] != '{' && charsArray[b] != '{' && charsArray[a] != '}' && charsArray[b] != '}' && charsArray[a] != '[' && charsArray[b] != '[' && charsArray[a] != ']' && charsArray[b] != ']') {
-                                            validString = true;
-                                        }
-                                        if ((charsArray[a] == '{' && charsArray[b] == '}') || (charsArray[a] == '[' && charsArray[b] == ']') || (charsArray[a] == '(' && charsArray[b] == ')')) {
-                                            validString = true;
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                validString = true;
+                System.out.println("Строка допустима!");
             }
         }
         return validString;

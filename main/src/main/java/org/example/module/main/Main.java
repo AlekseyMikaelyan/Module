@@ -23,6 +23,6 @@ public class Main {
 
         System.out.println("\n=================\n");
 
-        System.out.println(StringValidator.stringChecking("(([Привет!])({Привет!}))"));//Task number four
+        StringValidator.stringChecking("({}[])");//Task number four
     }
 }
